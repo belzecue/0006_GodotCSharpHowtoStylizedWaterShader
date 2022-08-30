@@ -4,7 +4,7 @@
 code = "shader_type spatial;
 
 uniform float wave_speed = 0.2;
-uniform float wave_height = 5.0f;
+uniform float wave_height = 5.0;
 uniform vec4 wave_color:hint_color;
 uniform float stylize_amount:hint_range(0.01,7,0.01) = 1.0;
 uniform float color_intesity:hint_range(0.01, 10, 0.01) = 1.0;
@@ -23,7 +23,7 @@ uniform sampler2D foam_map;
 
 float linearize(float depth, float z_near, float z_far) {
 	// Convert the exponential depth to a linear value	
-	depth = 2f * depth - 1f;
+	depth = 2.0 * depth - 1.0;
 	return z_near * z_far / (z_far + depth * (z_near - z_far));
 }
 
@@ -43,7 +43,7 @@ float animate_water(vec2 uv, float time) {
 	vec3 water_tex2 = texture(water_layer2, uv - time * 0.02 * wave_speed).rgb;
 		
 	// make values go between -1 and 1
-	return (water_tex1.r + water_tex2.r) -1f;
+	return (water_tex1.r + water_tex2.r) -1.0;
 }
 
 vec2 animate_normalmap(vec2 uv, float time) {
